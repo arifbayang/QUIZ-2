@@ -1,0 +1,144 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    title : 'Routing Navigation',
+    initialRoute : '/',
+    routes : {
+      '/' : (context) => Menu(),
+      HalamanPertama.routeName : (context) => HalamanPertama(),
+      HalamanKedua.routeName : (context) => HalamanKedua(),
+      HalamanKetiga.routeName : (context) => HalamanKetiga(),
+ 
+    },
+  ));
+}
+
+class Menu extends StatelessWidget {
+  @override
+  Widget build (BuildContext context) {
+    return Scaffold(
+      appBar : AppBar(
+        title : Text ('QUIZ2 PEMROGRAMAN MOBILE'),
+      ),
+      body : Center(
+        child : GridView.count(
+          crossAxisCount: 3,
+            children:<Widget>[RaisedButton(
+              child : Text ('DATA KELOMPOK'),
+              onPressed: (){
+
+                Navigator.pushNamed(context, HalamanKESATU.routeName);
+              },
+            ),
+            RaisedButton(
+              child : Text('TAMBAH DATA'),
+              onPressed : (){
+
+                Navigator.pushNamed(context, HalamanKEDUA.routeName);
+              },
+            ),
+            RaisedButton(
+              child : Text('CONTACT PERSON'),
+              onPressed : (){
+
+                Navigator.pushNamed(context, HalamanKETIGA.routeName);
+              },
+            ),
+           
+              
+            
+          ],
+        ),
+      ),
+    );
+  }
+}
+class HalamanPertama extends StatelessWidget {
+  static const String routeName = "/halaman KESATU";
+  @override
+  Widget build(BuildContext context){
+    return Scaffold (
+      appBar : AppBar(
+        title : Text("DATA KELOMPOK"),
+      ),
+      body: Column(
+          children : <Widget>[
+            Text('Nama Kelompok :'),
+            Text('NOVALAND SIHOTANG'),
+            Text('MUHAMMAD ARIF SANJAYA SEBAYANG'),
+            Text('REYNALDI PRAYOGA PERANGIN ANGIN'),
+            Text('RISKA GUSTIARA'), 
+            Text('YENNI PUTRIKA'),
+
+          ]
+          
+        ),
+      
+    );
+  }
+}
+class HalamanKedua extends StatelessWidget {
+  static const String routeName = "/halamanKEDUA";
+  @override
+  
+  final txtNIRM = TextEditingController();
+  final txtALAMAT = TextEditingController();
+  
+  List<Widget> data = [];
+  
+    onTambah() {
+    setState(() {
+      data.add(ListTile(
+        leading: Icon(Icons.circle),
+        title: Text(txtNIRM.text),
+        subtitle: Text(txtALAMAT.text),
+       
+        
+      )); 
+    });
+  }
+  
+  
+  
+  
+  Widget build(BuildContext context){
+    return Scaffold (
+      appBar : AppBar(
+        title : Text("TAMBAH DATA"),
+      ),
+      body: Center(
+        child : RaisedButton(
+          child : Text('Kembali'),
+          onPressed:(){
+            Navigator.pop(context);
+          },
+        ),
+      ),
+    );
+  }
+}
+class HalamanKetiga extends StatelessWidget {
+  static const String routeName = "/halamanKETIGA";
+  @override
+  Widget build(BuildContext context){
+    return Scaffold (
+      appBar : AppBar(
+        title : Text("CONTACT PERSON"),
+      ),
+     body: Column(
+          children : <Widget>[
+            Text('NOVALAND SIHOTANG : 085668993832'),
+            Text('MUHAMMAD ARIF SANJAYA SEBAYANG : 085668993342'),
+            Text('RENALDI PRAYOGA PERANGIN ANGIN : 085668994432'),
+            Text('RISKA GUSTIARA: 085678549333'), 
+            Text('YENNI PUTRIKA : 085639382329'),
+
+          ]
+          
+        ),
+      
+    );
+  }
+}
